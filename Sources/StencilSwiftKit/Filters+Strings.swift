@@ -5,7 +5,6 @@
 //
 
 import Foundation
-import PathKit
 import Stencil
 
 // MARK: - Strings Filters
@@ -304,7 +303,7 @@ public extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
   static func basename(_ value: Any?) throws -> Any? {
     let string = try Filters.parseString(from: value)
-    return Path(string).lastComponent
+    return URL(fileURLWithPath: string).lastPathComponent
   }
 
   /// Converts a file path to just the path without the filename.
@@ -314,7 +313,7 @@ public extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
   static func dirname(_ value: Any?) throws -> Any? {
     let string = try Filters.parseString(from: value)
-    return Path(string).parent().normalize().string
+    return URL(fileURLWithPath: string).deletingLastPathComponent().standardized.path
   }
 
   /// Removes newlines and other whitespace from a string. Takes an optional Mode argument:

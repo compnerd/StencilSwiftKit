@@ -4,7 +4,7 @@
 // MIT Licence
 //
 
-import PathKit
+import Foundation
 import Stencil
 
 public extension Extension {
@@ -68,7 +68,7 @@ private extension Extension {
 ///   - trimBehaviour: Globally control how whitespace is handled, defaults to `smart`.
 /// - Returns: A fully configured `Environment`
 public func stencilSwiftEnvironment(
-  templatePaths: [Path] = [],
+  templatePaths: [URL] = [],
   extensions: [Extension] = [],
   templateClass: Template.Type = Template.self,
   trimBehaviour: TrimBehaviour = .smart
